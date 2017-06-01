@@ -32,7 +32,7 @@ namespace yadisk
 
              std::sort(listAllFiles.begin(), listAllFiles.end(), customLessResource);
 
-             Resource curEdge = listAllFiles[0];	
+             Resource curEdge = listAllFiles.first;	
              Resources curEdgeCopies;
 
              for(int i = 0; i < listAllFiles.size(); ++i)
