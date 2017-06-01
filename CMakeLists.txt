@@ -19,7 +19,6 @@ file(GLOB ${PROJECT_NAME}_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/sources/*)
 
 if(BUILD_TESTS)
 	enable_testing()
-	find_package(Catch CONFIG REQUIRED)
 	file(GLOB TESTS_${PROJECT_NAME}_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/tests/*/*.cpp)
 	add_executable(check ${TESTS_${PROJECT_NAME}_SOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/tests/main.cpp)
 	target_link_libraries(check ${PROJECT_NAME} Catch::Catch)
