@@ -8,48 +8,20 @@ HunterGate(
     SHA1 "94e3314bfe952db1510ca644d2a8e0b55e9ebc8b"
 )
 
-project(yadisk-duplicate)
+project(duplicate)
 
-set(YDCLIENT_VERSION_MAJOR 0)
-set(YDCLIENT_VERSION_MINOR 1)
-set(YDCLIENT_VERSION_PATCH 1)
-set(YDCLIENT_VERSION ${YDCLIENT_VERSION_MAJOR}.${YDCLIENT_VERSION_MINOR}.${YDCLIENT_VERSION_PATCH})
-set(YDCLIENT_VERSION_STRING "v${YDCLIENT_VERSION}")
+set(DUPLICATE_MAJOR 0)
+set(DUPLICATE_VERSION_MINOR 1)
+set(DUPLICATE_VERSION_PATCH 1)
+set(DUPLICATE_VERSION ${DUPLICATE_VERSION_MAJOR}.${DUPLICATE_VERSION_MINOR}.${DUPLICATE_VERSION_PATCH})
+set(DUPLICATE_VERSION_STRING "v${DUPLICATE_VERSION}")
+SET(PROJECT_NAME "duplicate") 
 
 option(BUILD_TESTS "Build tests" ON)
-
-hunter_add_package(Boost COMPONENTS system filesystem)
-find_package(Boost CONFIG REQUIRED system filesystem)
-
-#hunter_add_package(puffin-stream)
-#find_package(puffin-stream REQUIRED)
-
-#hunter_add_package(puffin-buffer)
-#find_package(puffin-buffer REQUIRED)
-
-hunter_add_package(OpenSSL)
-find_package(OpenSSL REQUIRED)
-
-hunter_add_package(CURL)
-find_package(CURL CONFIG REQUIRED)
-
-hunter_add_package(nlohmann-json)
-find_package(nlohmann-json REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 file(GLOB ${PROJECT_NAME}_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/sources/*) 
-
-add_library(${PROJECT_NAME} ${${PROJECT_NAME}_SOURCES})
-
-target_link_libraries(${PROJECT_NAME} 
-	Boost::filesystem Boost::system 
-	OpenSSL::SSL OpenSSL::Crypto 
-	CURL::libcurl 
-	nlohmann-json::nlohmann-json
-#	puffin-stream::puffin-stream
-#	puffin-buffer::puffin-buffer
-)
 
 if(BUILD_TESTS)
 	enable_testing()
