@@ -11,6 +11,12 @@ namespace yadisk
 {
   namespace ops 
   {
+      /**
+      Выполняет поиск копий данных на диске
+      \param[in] client ссылка на client-yadisk
+      \param[in] Hash булева функция сравнения параметров
+      \return возвращает ресурсы всех копий данных
+      **/
       map<string, Resources> find_duplicate(Client& client, Predicate pred = Hash)
       {	
              map<string, Resources> resultFind; 
@@ -46,7 +52,11 @@ namespace yadisk
             }	
             return resultFind;
       }
-
+      /**
+      Выполняет поиск копий данных на диске
+      \param[in] curEdgeCopies ресурсы копий данных на диске
+      \param[out] resultFind результат сравнения данных
+      **/
       void addCopiesInResult(Resources curEdgeCopies, map<string, Resources>& resultFind)
       {
           for(int i = 0; i < curEdgeCopies.size(); ++i)
