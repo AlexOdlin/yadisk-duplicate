@@ -11,6 +11,9 @@ namespace yadisk
 {
   namespace ops 
   {
-      map<string, Resources> find_duplicate(Client& client, Predicate pred = Hash);
+      map<string, Resources> find_duplicate(Client& client, Predicate pred = Hash)
+      {
+       
+      };
   }
 }
