@@ -14,6 +14,6 @@ namespace yadisk
       map<string, Resources> find_duplicate(Client& client, Predicate pred = Hash)
       {
        
-      };
+      }
   }
 }
