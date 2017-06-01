@@ -16,11 +16,3 @@ option(BUILD_TESTS "Build tests" ON)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 file(GLOB ${PROJECT_NAME}_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/sources/*) 
-
-if(BUILD_TESTS)
-	enable_testing()
-	file(GLOB TESTS_${PROJECT_NAME}_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/tests/*/*.cpp)
-	add_executable(check ${TESTS_${PROJECT_NAME}_SOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/tests/main.cpp)
-	target_link_libraries(check ${PROJECT_NAME} Catch::Catch)
-	add_test(NAME check COMMAND check "-s" "-r" "compact" "--use-colour" "yes")	
-endif()
