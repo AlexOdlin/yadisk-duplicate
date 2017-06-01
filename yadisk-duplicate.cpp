@@ -12,8 +12,45 @@ namespace yadisk
   namespace ops 
   {
       map<string, Resources> find_duplicate(Client& client, Predicate pred = Hash)
+      {	
+             map<string, Resources> resultFind; 
+
+             Resources  listAllFiles = client.list();
+
+             struct {
+              bool operator()(Resource a, Resource b) const
+              {  
+                  return a.md5 < b.md5;
+              }  
+              } customLessResource;
+
+             std::sort(listAllFiles.begin(), listAllFiles.end(), customLessResource);
+
+             Resource curEdge = listAllFiles[0];	
+             Resources curEdgeCopies;
+
+             for(int i = 0; i < listAllFiles.size(); ++i)
+             {
+                  string curEdgeMD5 = curEdge.md5;
+                  string md5 = listAllFiles[i].md5;	
+
+                  if(curEdgeMD5   == md5)
+                   curEdgeCopies.push_back(listAllFiles[i]);
+                  else
+                  {
+                      addCopiesInResult(curEdgeCopies, resultFind);
+
+                      curEdge = listAllFiles[i];
+                      curEdgeCopies.clear();
+                  }	
+            }	
+            return resultFind;
+      }
+
+      void addCopiesInResult(Resources curEdgeCopies, map<string, Resources>& resultFind)
       {
-       
+          for(int i = 0; i < curEdgeCopies.size(); ++i)
+          resultFind[curEdgeCopies[i].path].insert(curEdgeCopies);
       }
   }
 }
