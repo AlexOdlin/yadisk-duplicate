@@ -55,7 +55,7 @@ namespace yadisk
       /**
       Выполняет поиск копий данных на диске
       \param[in] curEdgeCopies ресурсы копий данных на диске
-      \param[out] resultFind результат сравнения данных
+      \param[in] resultFind результат сравнения данных
       **/
       void addCopiesInResult(Resources curEdgeCopies, map<string, Resources>& resultFind)
       {
